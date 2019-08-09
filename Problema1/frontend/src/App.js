@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import UserInterface from './components/User/UserInterface';
+import NewUserForm from './components/NewUserForm/NewUserForm';
 
 class App extends React.Component {
 
@@ -65,7 +66,9 @@ class App extends React.Component {
 
 
     else {
-      return(<h1>Página não encontrada...</h1>)
+      return(
+        <NewUserForm goBack={this.changeScreen}/>
+      )
     }
    
   }
