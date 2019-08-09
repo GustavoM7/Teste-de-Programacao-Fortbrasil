@@ -33,7 +33,7 @@ class UpdateData extends Component {
         return(
             <div className="App">
                 <header className="App-header">
-                    <h2>ATUALIZAR {this.props.data.name}</h2>
+                    <h2>ATUALIZAR {this.props.data.nome}</h2>
 
     
                     <label htmlFor='userInput'>NOME:</label>
