@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 estabelecimentos = [
     {
@@ -19,6 +20,7 @@ estabelecimentos = [
 ]
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/')
 def home():

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Data from '../API/Data';
+///import Data from '../API/Data';
+import api from '../API/Api';
 
 
 class ListData extends Component {
@@ -10,12 +11,19 @@ class ListData extends Component {
     }
 
     getData = () => {
-        //Integrar com a API em breve...
         
-        this.setState({
-            data: Data,
-            loaded: true
+        api.get('/estabelecimentos', {}).then(res => {
+            this.setState({
+                data: res.data,
+                loaded: true
+            })
+        }).catch(error => {
+            alert("Erro inesperado...");
+            console.log(error);
+            this.props.goBack(0)
         })
+        
+        
     }
 
     update = () => {
