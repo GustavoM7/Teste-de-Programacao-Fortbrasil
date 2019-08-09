@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import api from '../API/Api';
 
 
-class CreateNewData extends Component {
+class UpdateData extends Component {
 
     state = {
-        id: new Date().getTime(),
-        nome: "",
-        local: "",
+        id: this.props.data.id,
+        nome: this.props.data.nome,
+        local: this.props.data.local,
     }
 
     handleInputs = (e) => {
@@ -16,12 +16,15 @@ class CreateNewData extends Component {
         })
     }
 
-    create = () => {
-        api.post('/estabelecimentos', this.state).then( () => {
-            alert("Novo estabelecimento criado!")
+    update = () => {
+        api.put('/estabelecimentos/'+this.state.id, this.state).then(res => {
+            console.log(res);
+            alert("Estabelecimento atualizado!");
             this.props.goBack(0);
-        }).catch( err => {
-            alert("Erro inesperado!")
+
+        }).catch(error => {
+            alert("Erro inesperado...");
+            console.log(error);
             this.props.goBack(0);
         })
     }
@@ -30,15 +33,16 @@ class CreateNewData extends Component {
         return(
             <div className="App">
                 <header className="App-header">
-                    <h2>REGISTRAR NOVO ESTABELECIMENTO</h2>
+                    <h2>ATUALIZAR {this.props.data.name}</h2>
 
+    
                     <label htmlFor='userInput'>NOME:</label>
                     <input className='App-input' id='userInput' type='text' name="nome" onChange={this.handleInputs} value={this.state.nome}/>
 
                     <label htmlFor='passwordInput'>LOCAL:</label>
                     <input className='App-input' id='passwordInput' name="local" onChange={this.handleInputs} value={this.state.local}/>
 
-                    <button className='App-button' onClick={() => this.create()} >
+                    <button className='App-button' onClick={() => this.update()} >
                         ENVIAR
                     </button>
                     <button className='App-button' type='button' onClick={() => this.props.goBack(0)}>
@@ -52,4 +56,4 @@ class CreateNewData extends Component {
     
 }
 
-export default CreateNewData;
+export default UpdateData;
