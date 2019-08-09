@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ListData from '../DataManager/ListData';
+import CreateNewData from '../DataManager/CreateNewData';
+import SearchData from '../DataManager/SearchData';
 
 
 class UserInterface extends Component {
@@ -26,8 +28,8 @@ class UserInterface extends Component {
                         <button className='App-button' type='button' onClick={() => this.changeContent(2)}>
                             CRIAR NOVO
                         </button>
-                        <button className='App-button' type='button' onClick={() => this.changeContent(1)}>
-                            BUSCAR PRÓXIMO
+                        <button className='App-button' type='button' onClick={() => this.changeContent(3)}>
+                            BUSCAR PRÓXIMOS
                         </button>
 
                         <hr width="100"/>
@@ -53,13 +55,13 @@ class UserInterface extends Component {
 
         else if (this.state.content === 2){
             return(
-                <h1>Criar novo...</h1>
+                <CreateNewData goBack={this.changeContent}/>
             )
         }
 
         else {
             return(
-                <h1>Buscar...</h1>
+                <SearchData goBack={this.changeContent}/>
             )
         }
 
